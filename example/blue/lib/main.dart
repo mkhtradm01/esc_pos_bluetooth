@@ -1,8 +1,5 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
@@ -66,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final Ticket ticket = Ticket(paper);
 
     // Print image
-    final ByteData data = await rootBundle.load('assets/rabbit_black.jpg');
-    final Uint8List bytes = data.buffer.asUint8List();
-    final Image image = decodeImage(bytes);
+    // final ByteData data = await rootBundle.load('assets/rabbit_black.jpg');
+    // final Uint8List bytes = data.buffer.asUint8List();
+    // final Image image = decodeImage(bytes);
     // ticket.image(image);
 
     ticket.text('GROCERYLY',
@@ -82,50 +79,39 @@ class _MyHomePageState extends State<MyHomePage> {
     ticket.text('889  Watson Lane', styles: PosStyles(align: PosAlign.center));
     ticket.text('New Braunfels, TX', styles: PosStyles(align: PosAlign.center));
     ticket.text('Tel: 830-221-1234', styles: PosStyles(align: PosAlign.center));
-    ticket.text('Web: www.example.com',
-        styles: PosStyles(align: PosAlign.center), linesAfter: 1);
+    ticket.text('Web: www.example.com', styles: PosStyles(align: PosAlign.center), linesAfter: 1);
 
     ticket.hr();
     ticket.row([
       PosColumn(text: 'Qty', width: 1),
       PosColumn(text: 'Item', width: 7),
-      PosColumn(
-          text: 'Price', width: 2, styles: PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: 'Total', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: 'Price', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: 'Total', width: 2, styles: PosStyles(align: PosAlign.right)),
     ]);
 
     ticket.row([
       PosColumn(text: '2', width: 1),
       PosColumn(text: 'ONION RINGS', width: 7),
-      PosColumn(
-          text: '0.99', width: 2, styles: PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: '1.98', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '0.99', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '1.98', width: 2, styles: PosStyles(align: PosAlign.right)),
     ]);
     ticket.row([
       PosColumn(text: '1', width: 1),
       PosColumn(text: 'PIZZA', width: 7),
-      PosColumn(
-          text: '3.45', width: 2, styles: PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: '3.45', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '3.45', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '3.45', width: 2, styles: PosStyles(align: PosAlign.right)),
     ]);
     ticket.row([
       PosColumn(text: '1', width: 1),
       PosColumn(text: 'SPRING ROLLS', width: 7),
-      PosColumn(
-          text: '2.99', width: 2, styles: PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: '2.99', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '2.99', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '2.99', width: 2, styles: PosStyles(align: PosAlign.right)),
     ]);
     ticket.row([
       PosColumn(text: '3', width: 1),
       PosColumn(text: 'CRUNCHY STICKS', width: 7),
-      PosColumn(
-          text: '0.85', width: 2, styles: PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: '2.55', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '0.85', width: 2, styles: PosStyles(align: PosAlign.right)),
+      PosColumn(text: '2.55', width: 2, styles: PosStyles(align: PosAlign.right)),
     ]);
     ticket.hr();
 
@@ -150,35 +136,21 @@ class _MyHomePageState extends State<MyHomePage> {
     ticket.hr(ch: '=', linesAfter: 1);
 
     ticket.row([
-      PosColumn(
-          text: 'Cash',
-          width: 7,
-          styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
-      PosColumn(
-          text: '\$15.00',
-          width: 5,
-          styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
+      PosColumn(text: 'Cash', width: 7, styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
+      PosColumn(text: '\$15.00', width: 5, styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
     ]);
     ticket.row([
-      PosColumn(
-          text: 'Change',
-          width: 7,
-          styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
-      PosColumn(
-          text: '\$4.03',
-          width: 5,
-          styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
+      PosColumn(text: 'Change', width: 7, styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
+      PosColumn(text: '\$4.03', width: 5, styles: PosStyles(align: PosAlign.right, width: PosTextSize.size2)),
     ]);
 
     ticket.feed(2);
-    ticket.text('Thank you!',
-        styles: PosStyles(align: PosAlign.center, bold: true));
+    ticket.text('Thank you!', styles: PosStyles(align: PosAlign.center, bold: true));
 
     final now = DateTime.now();
     final formatter = DateFormat('MM/dd/yyyy H:m');
     final String timestamp = formatter.format(now);
-    ticket.text(timestamp,
-        styles: PosStyles(align: PosAlign.center), linesAfter: 2);
+    ticket.text(timestamp, styles: PosStyles(align: PosAlign.center), linesAfter: 2);
 
     // Print QR Code from image
     // try {
@@ -211,21 +183,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<Ticket> testTicket(PaperSize paper) async {
     final Ticket ticket = Ticket(paper);
 
-    ticket.text(
-        'Regular: aA bB cC dD eE fF gG hH iI jJ kK lL mM nN oO pP qQ rR sS tT uU vV wW xX yY zZ');
-    ticket.text('Special 1: àÀ èÈ éÉ ûÛ üÜ çÇ ôÔ',
-        styles: PosStyles(codeTable: PosCodeTable.westEur));
-    ticket.text('Special 2: blåbærgrød',
-        styles: PosStyles(codeTable: PosCodeTable.westEur));
+    ticket.text('Regular: aA bB cC dD eE fF gG hH iI jJ kK lL mM nN oO pP qQ rR sS tT uU vV wW xX yY zZ');
+    ticket.text('Special 1: àÀ èÈ éÉ ûÛ üÜ çÇ ôÔ', styles: PosStyles(codeTable: PosCodeTable.westEur));
+    ticket.text('Special 2: blåbærgrød', styles: PosStyles(codeTable: PosCodeTable.westEur));
 
     ticket.text('Bold text', styles: PosStyles(bold: true));
     ticket.text('Reverse text', styles: PosStyles(reverse: true));
-    ticket.text('Underlined text',
-        styles: PosStyles(underline: true), linesAfter: 1);
+    ticket.text('Underlined text', styles: PosStyles(underline: true), linesAfter: 1);
     ticket.text('Align left', styles: PosStyles(align: PosAlign.left));
     ticket.text('Align center', styles: PosStyles(align: PosAlign.center));
-    ticket.text('Align right',
-        styles: PosStyles(align: PosAlign.right), linesAfter: 1);
+    ticket.text('Align right', styles: PosStyles(align: PosAlign.right), linesAfter: 1);
 
     ticket.row([
       PosColumn(
@@ -288,8 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // await printerManager.printTicket(await testTicket(paper));
 
     // DEMO RECEIPT
-    final PosPrintResult res =
-        await printerManager.printTicket(await demoReceipt(paper));
+    final PosPrintResult res = await printerManager.printTicket(await demoReceipt(paper));
 
     showToast(res.msg);
   }
