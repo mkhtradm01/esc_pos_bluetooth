@@ -98,14 +98,14 @@ packages:
       path: "../.."
       relative: true
     source: path
-    version: "0.2.8"
+    version: "0.2.9"
   esc_pos_utils:
     dependency: "direct main"
     description:
       name: esc_pos_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.6"
+    version: "0.4.9"
   fake_async:
     dependency: transitive
     description:
@@ -135,10 +135,12 @@ packages:
   flutter_bluetooth_basic:
     dependency: transitive
     description:
-      name: flutter_bluetooth_basic
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5"
+      path: "."
+      ref: HEAD
+      resolved-ref: "6dae2f0ca5265d4177c4b4fc5091a45533579394"
+      url: "git://github.com/mkhtradm01/flutter_bluetooth_basic"
+    source: git
+    version: "0.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -185,7 +187,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.1"
   matcher:
     dependency: transitive
     description:
@@ -297,7 +299,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.23.1"
+    version: "0.26.0"
   sky_engine:
     dependency: transitive
     description: flutter

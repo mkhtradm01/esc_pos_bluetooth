@@ -42,6 +42,10 @@ class PrinterBluetoothManager {
     return Future<dynamic>.delayed(Duration(seconds: seconds));
   }
 
+  Future<bool> isOn() async {
+    return await _bluetoothManager.isOn;
+  }
+
   void startScan(Duration timeout) async {
     _scanResults.add(<PrinterBluetooth>[]);
 
